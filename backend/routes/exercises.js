@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let Exercise = require('../models/user.model');
+let Exercise = require('../models/exercise.model');
 
 //Routes inside our route files read as '/exercises/____' because of how we set up our routes in the server file.
 //The one below would be '/exercises/
