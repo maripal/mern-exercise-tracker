@@ -20,11 +20,11 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 });
 
-const exerciseRouter = require('./routes/exercises');
+const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 
 //With this, when someone goes the route url & adds /exercise, it'll load everything inside the exercisesRouter.
-app.use('/exercises', exerciseRouter);
+app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 
 app.listen(port, () => console.log(`Server is running on port: ${port}`));
