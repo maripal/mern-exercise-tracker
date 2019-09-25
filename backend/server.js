@@ -10,6 +10,8 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+
+
 //our database uri we get from the mongodb atlas dashboard. Where our db is stored.
 const uri = process.env.ATLAS_URI;
 //connect our db. 

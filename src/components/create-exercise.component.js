@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -17,10 +18,17 @@ export default class CreateExercise extends Component {
 
   //This lifecycle method will be called right before anything gets displayed on the page.
   componentDidMount() {
-    this.setState({
-      users: ['test user'],
-      username: 'test user'
-    });
+    axios.get('http://localhost:5000/users/')
+      .then(response => {
+        //check if there's a response; a user in the database
+        if (response.data.length > 0) {
+          this.setState({
+            users: response.data.map(user => user.username),
+            //username is set to the first user in the database
+            username: response.data[0].username
+          });
+        }
+      })
   };
 
   onChangeUsername = e => {
@@ -50,6 +58,9 @@ export default class CreateExercise extends Component {
     };
 
     console.log(exercise);
+
+    axios.post('http://localhost:5000/exercises/add', exercise)
+      .then(res => console.log(res.data));
 
     //after exercise form is submitted
     window.location = '/';
